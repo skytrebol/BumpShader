@@ -145,11 +145,11 @@ function init_ground(){
 			meshGeometry, {
 			    textureWidth: 512,
 			    textureHeight: 512,
-			    //side: THREE.FrontSide,
-			    side: THREE.DoubleSide,
+			    side: THREE.FrontSide,
+			    //side: THREE.DoubleSide,
 			    bumpTexture:_bumpTexture,
 			    //bumpScale:50,
-			    bumpScale:5,
+			    bumpScale:15,
 			    terrainTexture:_terrainTexture
 			}
 		    );
@@ -163,26 +163,16 @@ function init_ground(){
 		    
 		    scene.add( mesh );
 
-		    update_mesh(0, terrainTexture, bumpTexture);
 		});
 	});
 	    
 }
 
-function update_mesh(_delta, _terrainTexture, _bumpTexture){
-    if( mesh ){
-	//mesh.update({sunColor:0x161f1f,baseColor:0x008f86,waterColor:0x74dae6,alpha:0.7});//green
-	mesh.update({sunColor:0x131818,baseColor:0x232f2f,waterColor:0x85888d,alpha:0.85});
-	//mesh.update({bumpTexture:_bumpTexture,bumpScale:50,terrainTexture:_terrainTexture});
-	//一回描画しておく for low quality mode (atmos必要)
-	animate_mesh(_delta);
-    }
-}
 
 function animate_mesh(_delta){
-    let _intensity = 1.0;
-    mesh.update({time:(1.0 / 90.0),intensity:(_intensity/2+0.5)});
-    //mesh.update({time:_delta,intensity:(_intensity/2+0.5)});
+    if( mesh ){
+	mesh.update({time:(1.0 / 90.0)});
+    }
 }
 
 
@@ -213,10 +203,7 @@ function animate( now ) {
     requestAnimationFrame( animate );
     if(stats){stats.update();}
 
-    if(mesh){
-	//update_mesh(delta, terrainTexture, bumpTexture);
-	animate_mesh(delta);
-    }
+    //animate_mesh(delta);
 
     renderer.render( scene, camera );
 }
