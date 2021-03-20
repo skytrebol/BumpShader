@@ -122,20 +122,22 @@ var bumpTexture;
 
 function init_ground(){
     terrainTexture = loader.load(
-	//"./_unused/texturemap1024.png",
-	"./img/13.jpg",
+	//"./img/13.jpg",
+	"./img/pebble1.jpg",
+	//"./img/pebble2.jpg",
 	function ( _terrainTexture ) {
 	    _terrainTexture.wrapS = _terrainTexture.wrapT = THREE.RepeatWrapping;
 	    _terrainTexture.anisotropy = 16;
 	    bumpTexture = loader.load(
-		//"./_unused/uluru-heightmap.png",
-		"./img/13_HM.jpg",
+		//"./img/13_HM.jpg",
+		"./img/pebble1_HM.jpg",
+		//"./img/pebble2_HM.jpg",
 		function ( _bumpTexture ) {
 		    _bumpTexture.wrapS = _bumpTexture.wrapT = THREE.RepeatWrapping;
 		    _bumpTexture.anisotropy = 16;
 		    //const meshGeometry = new THREE.PlaneBufferGeometry( 1024, 1024, 256, 256 );
-		    //const meshGeometry = new THREE.PlaneBufferGeometry( 1024, 1024, 64, 64 );
-		    const meshGeometry = new THREE.PlaneBufferGeometry( 1024, 1024, 32, 32 );
+		    const meshGeometry = new THREE.PlaneBufferGeometry( 1024, 1024, 64, 64 );
+		    //const meshGeometry = new THREE.PlaneBufferGeometry( 1024, 1024, 32, 32 );
 		    //const meshGeometry = new THREE.PlaneBufferGeometry( 1024, 1024, 1, 1 );
 		    //material.map.repeat.set( .25, .25 );
 		    
@@ -143,12 +145,11 @@ function init_ground(){
 			meshGeometry, {
 			    textureWidth: 512,
 			    textureHeight: 512,
-			    eye: new THREE.Vector3( 0, -1, 0 ),
 			    //side: THREE.FrontSide,
 			    side: THREE.DoubleSide,
 			    bumpTexture:_bumpTexture,
 			    //bumpScale:50,
-			    bumpScale:0.1,
+			    bumpScale:5,
 			    terrainTexture:_terrainTexture
 			}
 		    );

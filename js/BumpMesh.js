@@ -39,11 +39,10 @@ var BumpMesh = function ( geometry, options ) {
 	var clipBias = options.clipBias !== undefined ? options.clipBias : 0.0;
 	var time = options.time !== undefined ? options.time : 0.0;
 	var normalSampler = options.waterNormals !== undefined ? options.waterNormals : null;
-	var eye = options.eye !== undefined ? options.eye : new Vector3( 0, 0, 0 );
 	var side = options.side !== undefined ? options.side : FrontSide;
         var terrainTexture = options.terrainTexture !== undefined ? options.terrainTexture : null;
         var bumpTexture = options.bumpTexture !== undefined ? options.bumpTexture : null;
-        var bumpScale = 50;
+        var bumpScale = options.bumpScale !== undefined ? options.bumpScale : null;
 
 
 	//
@@ -91,8 +90,7 @@ var BumpMesh = function ( geometry, options ) {
 				'textureMatrix': { value: new Matrix4() },
 				'terrainTexture': { value: null },
 				'bumpTexture': { value: null },
-				'bumpScale': { value: 50.0 },
-				'eye': { value: new Vector3() }
+				'bumpScale': { value: 50.0 }
 			}
 		] ),
 
@@ -117,7 +115,6 @@ var BumpMesh = function ( geometry, options ) {
 	material.uniforms[ 'bumpTexture' ].value = bumpTexture;
 	material.uniforms[ 'bumpScale' ].value = bumpScale;
 
-	material.uniforms[ 'eye' ].value = eye;
 
 	scope.material = material;
 
